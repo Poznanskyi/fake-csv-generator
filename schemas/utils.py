@@ -1,4 +1,3 @@
-import csv
 from faker import Faker
 
 def generate_csv(schema, num_rows=100):
