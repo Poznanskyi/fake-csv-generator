@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import DataSchema, DataColumn, GeneratedData
 
-# Register your models here.
+
+admin.site.regisret(DataSchema)
+admin.site.register(DataColumn)
+admin.site.register(GeneratedData)
+
