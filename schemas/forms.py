@@ -1,14 +1,14 @@
 from django import forms
-from .models import Schema, Column
+from .models import DataSchema, DataColumn
 
 
-class SchemasForm(forms.ModelForm):
+class DataSchemaForm(forms.ModelForm):
     class Meta:
-        model = Schema
+        model = DataSchema
         fields = ["name"]
 
 
-class ColumnForm(forms.ModelForm):
+class DataColumnForm(forms.ModelForm):
     class Meta:
-        model = Column
+        model = DataColumn
         fields = ["name", "data_type"]
