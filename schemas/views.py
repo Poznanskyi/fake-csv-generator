@@ -22,3 +22,22 @@ def create_schema(request):
     else:
         form = DataSchemaForm()
     return render(request, "schemas/create_schema.html", {"form": form})
+
+@login_required
+def add_columns(request, schema_id):
+    schema = DataSchema.objects.get(id=schema_id, user=request.user)
+    if request.method == "POST":
+        form = DataColumnForm(request.POST)
+        if form.is_valid():
+            column = form.save(commit=False)
+            column.schema = schema
+            column.save()
+            return redirect("add_columns", schema_id=schema.id)
+    else:
+        form = DataColumnForm()
+    columns = schema.colums.all()
+    return render(
+        request,
+        "schemas/add_columns.html",
+        {"form": form, "schema": schema, "columns": columns}
+    )
