@@ -1,23 +1,24 @@
-from django.contrib.auth.decorators import login_required
+import random
+
 from django.shortcuts import render, redirect
-from.forms import SchemasForm, ColumnForm
-from .models import Schema, Column
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+from faker import Faker
+
+from.forms import DataSchemaForm, DataColumnForm
+from .models import DataSchema, DataColumn, GeneratedData
 
 
 @login_required
 def create_schema(request):
     if request.method == "POST":
-        schema_form = SchemasForm(request.POST)
-        if schema_form.is_valid():
-            schema = schema_form.save(commit=False)
+        form = DataSchemaForm(request.POST)
+        if form.is_valid():
+            schema = form.save(commit=False)
             schema.user = request.user
             schema.save()
-            return redirect("list_schemas")
+            return redirect("add_columns", schema_id=schema.id)
     else:
-        schema_form = SchemasForm
-    return render(request, "create_schema.html", {"form": schema_form})
-
-@login_required
-def list_schemas(request):
-    schemas = Schema.object.filter(user=request.user)
-    return render(request, "list_schemas.html", {"schemas": schemas})
+        form = DataSchemaForm()
+    return render(request, "schemas/create_schema.html", {"form": form})
