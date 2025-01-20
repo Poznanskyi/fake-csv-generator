@@ -21,10 +21,10 @@ class DataColumn(models.Model):
 
     schema = models.ForeignKey(DataSchema, on_delete=models.CASCADE, related_name="columns")
     name = models.CharField(max_length=100)
-    date_type = models.CharField(max_length=10, choices= DATA_TYPES)
+    data_type = models.CharField(max_length=10, choices=DATA_TYPES)
 
     def __str__(self):
-        return f"{self.name} ({self.date_type})"
+        return f"{self.name} ({self.data_type})"
 
 
 class GeneratedData(models.Model):
