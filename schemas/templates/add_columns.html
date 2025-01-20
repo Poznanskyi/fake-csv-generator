@@ -1,0 +1,11 @@
+<h1>Add Columns to Schema: {{ schema.name }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Column</button>
+</form>
+<ul>
+    {% for column in columns %}
+      <li>{{ column.name }} ({{ column.get_data_type_display }})</li>
+    {% endfor %}
+</ul>
