@@ -1,13 +1,12 @@
 import random
 
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-
+from django.shortcuts import render, redirect
 from faker import Faker
 
-from.forms import DataSchemaForm, DataColumnForm
-from .models import DataSchema, DataColumn, GeneratedData
+from .models import DataSchema, GeneratedData
+from .forms import DataSchemaForm, DataColumnForm
 
 fake = Faker()
 
