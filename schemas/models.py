@@ -13,16 +13,16 @@ class DataSchema(models.Model):
 
 class DataColumn(models.Model):
     DATA_TYPES = [
-        ('full_name', 'Full Name'),
-        ('job', 'Job'),
-        ('email', 'Email'),
-        ('domain_name', 'Domain Name'),
-        ('phone_number', 'Phone Number'),
-        ('company_name', 'Company Name'),
-        ('text', 'Text'),
-        ('integer', 'Integer'),
-        ('address', 'Address'),
-        ('date', 'Date'),
+        ("full_name", "Full Name"),
+        ("job", "Job"),
+        ("email", "Email"),
+        ("domain_name", "Domain Name"),
+        ("phone_number", "Phone Number"),
+        ("company_name", "Company Name"),
+        ("text", "Text"),
+        ("integer", "Integer"),
+        ("address", "Address"),
+        ("date", "Date"),
     ]
 
     schema = models.ForeignKey(DataSchema, on_delete=models.CASCADE, related_name="columns")
