@@ -13,15 +13,21 @@ class DataSchema(models.Model):
 
 class DataColumn(models.Model):
     DATA_TYPES = [
-        ("char", "Character"),
-        ("string", "String"),
-        ("integer", "Integer"),
-        ("date", "Date"),
+        ('full_name', 'Full Name'),
+        ('job', 'Job'),
+        ('email', 'Email'),
+        ('domain_name', 'Domain Name'),
+        ('phone_number', 'Phone Number'),
+        ('company_name', 'Company Name'),
+        ('text', 'Text'),
+        ('integer', 'Integer'),
+        ('address', 'Address'),
+        ('date', 'Date'),
     ]
 
     schema = models.ForeignKey(DataSchema, on_delete=models.CASCADE, related_name="columns")
     name = models.CharField(max_length=100)
-    data_type = models.CharField(max_length=10, choices=DATA_TYPES)
+    data_type = models.CharField(max_length=20, choices=DATA_TYPES)
 
     def __str__(self):
         return f"{self.name} ({self.data_type})"
