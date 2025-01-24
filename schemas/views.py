@@ -50,14 +50,28 @@ def generate_data(request, schema_id):
     generated_data = {}
     for column in columns:
         data_type = column.data_type
-        if data_type == "char":
-            generated_data[column.name] = fake.word()
-        elif data_type == "int":
-            generated_data[column.name] = random.randint(1, 100)
+        if data_type == "full_name":
+            generated_data[column.name] = fake.name()
+        elif data_type == "job":
+            generated_data[column.name] = fake.job()
+        elif data_type == "email":
+            generated_data[column.name] = fake.email()
+        elif data_type == "domain_name":
+            generated_data[column.name] = fake.domain_name()
+        elif data_type == "phone_number":
+            generated_data[column.name] = fake.phone_number()
+        elif data_type == "company_name":
+            generated_data[column.name] = fake.company()
+        elif data_type == "text":
+            generated_data[column.name] = fake.text(max_nb_chars=200)
+        elif data_type == "integer":
+            min_val = 1
+            max_val = 1000
+            generated_data[column.name] = random.randint(min_val, max_val)
+        elif data_type == "address":
+            generated_data[column.name] = fake.address()
         elif data_type == "date":
-            generated_data[column.name] = fake.date()
-        elif data_type == "float":
-            generated_data[column.name] = random.uniform(1.0, 100.0)
+            generated_data[column.name] = fake.date_this_decade()
 
     GeneratedData.objects.create(schema=schema, data=generated_data)
 
